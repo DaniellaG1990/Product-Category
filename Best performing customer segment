@@ -1,0 +1,9 @@
+SELECT 
+SUM (orders.profit)::money AS total_profit, products.category, customers.segment
+FROM orders
+JOIN products
+ON orders.product_id = products.product_id
+JOIN customers
+ON orders.customer_id = customers.customer_id
+WHERE products.category = 'Technology'
+GROUP BY products.category, customers.segment;
