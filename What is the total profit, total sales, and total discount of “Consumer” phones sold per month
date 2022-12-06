@@ -1,0 +1,14 @@
+SELECT
+SUM (orders.quantity) AS total_phones_sold, products.sub_category, customers.segment,
+SUM (orders.profit)::money AS total_profit, 
+SUM (orders.sales)::money AS total_sales,
+SUM (orders.discount) AS total_discount,
+DATE_PART('month', order_date) AS month
+FROM orders
+JOIN products
+ON orders.product_id = products.product_id
+JOIN customers
+ON customers.customer_id = orders.customer_id
+WHERE customers.segment = 'Consumer' AND products.sub_category = 'Phones'
+GROUP BY month, products.sub_category, customers.segment
+ORDER BY 7;
