@@ -1,0 +1,6 @@
+SELECT 
+SUM (orders.profit)::money AS total_profit, products.category
+FROM orders
+JOIN products
+	ON orders.product_id = products.product_id
+GROUP BY products.category;
