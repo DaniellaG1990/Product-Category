@@ -1,0 +1,7 @@
+SELECT 
+orders.quantity, sales::money, profit::money,
+products.category
+FROM orders
+JOIN products
+ON orders.product_id = products.product_id
+ORDER BY 3 DESC;
